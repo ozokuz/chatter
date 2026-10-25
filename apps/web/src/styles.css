@@ -1,0 +1,64 @@
+:root { font-family: system-ui, sans-serif; font-size: 14px; color: #222; background: #fff; font-synthesis: none; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+button, input, textarea { font: inherit; }
+button { cursor: pointer; padding: 7px 10px; border: 1px solid #bbb; border-radius: 3px; background: #f5f5f5; color: inherit; }
+button:hover { background: #eaeaea; }
+button:disabled { cursor: not-allowed; opacity: .5; }
+button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible { outline: 2px solid #555; outline-offset: 2px; }
+a { color: inherit; }
+h1, h2, p { margin: 0; }
+h1 { font-size: 20px; font-weight: 600; }
+h2 { font-size: 16px; font-weight: 600; }
+.primary { color: #fff; background: #333; border-color: #333; }
+.primary:hover { background: #111; }
+.error, .notice { padding: 10px; border: 1px solid #bbb; line-height: 1.5; }
+.error { color: #a11; border-color: #c99; }
+.notice { margin-top: 20px; }
+.app-loading { min-height: 100dvh; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 16px; padding: 24px; }
+.auth-page { min-height: 100dvh; display: grid; place-items: center; padding: 24px; }
+.auth-form-content { width: 100%; max-width: 340px; }
+.brand { display: inline-block; font-size: 16px; font-weight: 600; text-decoration: none; margin-bottom: 24px; }
+.auth-form { display: flex; flex-direction: column; gap: 18px; margin-top: 24px; }
+.auth-form label { display: flex; flex-direction: column; gap: 7px; }
+.auth-form input { width: 100%; border: 1px solid #aaa; border-radius: 3px; background: #fff; color: inherit; padding: 9px; }
+.field-hint { color: #666; font-size: 12px; }
+.auth-switch { margin-top: 18px; }
+.auth-switch button { border: 0; background: none; text-decoration: underline; padding: 0; }
+.chat-app { display: flex; flex-direction: column; height: 100dvh; overflow: hidden; }
+.chat-header { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; padding: 14px 20px; border-bottom: 1px solid #ddd; }
+.chat-header h1 { font-size: 18px; }
+.current-user { margin-left: auto; overflow-wrap: anywhere; }
+.connection-banner { padding: 8px 20px; border-bottom: 1px solid #ddd; color: #666; }
+.chat-body { display: flex; flex: 1; min-height: 0; position: relative; }
+.conversation-column { display: flex; flex-direction: column; min-width: 0; flex: 1; position: relative; }
+.conversation-feed { flex: 1; overflow-y: auto; min-height: 0; padding: 20px; overflow-anchor: none; }
+.feed-status { color: #666; padding: 16px 0; }
+.older-button { display: block; margin: 0 auto 20px; }
+.date-divider { color: #666; font-size: 12px; border-bottom: 1px solid #ddd; padding-bottom: 6px; margin-bottom: 16px; }
+.message { margin-bottom: 18px; }
+.message-meta { display: flex; align-items: baseline; gap: 10px; margin-bottom: 4px; }
+.message-meta strong { font-weight: 600; overflow-wrap: anywhere; }
+.message-meta time { font-size: 12px; color: #666; flex-shrink: 0; }
+.message-content { white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.5; }
+.composer-wrap { padding: 12px 20px; border-top: 1px solid #ddd; }
+.composer-wrap > .error { margin-bottom: 10px; }
+.composer { display: flex; align-items: flex-end; gap: 10px; }
+.composer textarea { flex: 1; min-width: 0; min-height: 64px; max-height: 180px; resize: vertical; border: 1px solid #aaa; border-radius: 3px; padding: 9px; line-height: 1.5; color: inherit; background: #fff; }
+.composer-hint { color: #666; font-size: 12px; margin-top: 7px; }
+.new-messages { align-self: center; margin: 6px; }
+.members-panel { width: 240px; flex-shrink: 0; border-left: 1px solid #ddd; background: #fff; padding: 16px; overflow-y: auto; }
+.members-heading { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 16px; }
+.members-panel ul { list-style: none; padding: 0; margin: 0; }
+.members-panel li { display: flex; gap: 10px; justify-content: space-between; padding: 8px 0; overflow-wrap: anywhere; }
+.member-status { color: #666; font-size: 12px; flex-shrink: 0; }
+@media (max-width: 600px) {
+  .chat-header { gap: 8px; padding: 12px; }
+  .chat-header h1 { flex: 1 0 100%; }
+  .current-user { margin-left: 0; margin-right: auto; max-width: 50%; font-size: 12px; }
+  .conversation-feed { padding: 12px; }
+  .composer-wrap { padding: 12px; padding-bottom: max(12px, env(safe-area-inset-bottom)); }
+  .composer textarea { font-size: 16px; }
+  .composer-hint { font-size: 11px; }
+  .members-panel { position: absolute; inset: 0 0 0 auto; width: min(280px, 100%); z-index: 1; }
+}

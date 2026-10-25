@@ -1,0 +1,38 @@
+services:
+  db:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-chatter}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-chatter}
+      POSTGRES_DB: ${POSTGRES_DB:-chatter}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+  app:
+    build:
+      context: .
+      dockerfile: apps/server/Dockerfile
+    restart: unless-stopped
+    expose:
+      - "3000"
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      TRUST_PROXY_HOPS: 1
+      DATABASE_URL: postgresql://${POSTGRES_USER:-chatter}:${POSTGRES_PASSWORD:-chatter}@db:5432/${POSTGRES_DB:-chatter}
+      BETTER_AUTH_SECRET: ${BETTER_AUTH_SECRET:?Set BETTER_AUTH_SECRET in .env}
+      BETTER_AUTH_URL: ${BETTER_AUTH_URL:-http://localhost:3000}
+      APP_ORIGIN: ${BETTER_AUTH_URL:-http://localhost:3000}
+    depends_on:
+      - db
+  frontend:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    restart: unless-stopped
+    ports:
+      - "${PORT:-3000}:8080"
+    depends_on:
+      - app
+volumes:
+  postgres_data:
